@@ -132,6 +132,7 @@ class Clinica{
     get historico_animais(){
         return console.log(this.animais_atendidos)
     }
+
     get animais_atendimento(){
         return console.log(this.animais_em_atendimento)
     }
