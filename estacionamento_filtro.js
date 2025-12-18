@@ -94,7 +94,6 @@ class Estacionamento {
 
     tipoMaisEstacionado(){
         const contagem = {}
-
         this.relatorio.forEach(reg => {
             const tipo = reg.veiculo_estacionado.tipo_veiculo
             contagem[tipo] = (contagem[tipo] || 0) + 1
@@ -175,6 +174,7 @@ const carreta_furacao = new caminhao(125, 2026, "Olha onda, Olha ondaa", "Rosa",
 exxxtacionamento.registrar_veiculo(carro_legal_incrivel_branca_de_neve)
 exxxtacionamento.registrar_veiculo(carro_velho)
 exxxtacionamento.registrar_veiculo(carreta_furacao)
+exxxtacionamento.registrar_saida(123124)
 
 console.log(exxxtacionamento.filtrarPorAno(2026))
 
@@ -183,6 +183,10 @@ console.log(exxxtacionamento.filtrarPorCor("rosa"))
 console.log(exxxtacionamento.tipoMaisEstacionado())
 
 console.log(exxxtacionamento.quantidadePorTipo())
+
+console.log(exxxtacionamento.tipoMaisPresenteAgora())
+
+console.log(exxxtacionamento.registro_atual())
 
 function ExbitionInHtmlesson(){
     const atuais = document.getElementById("atuais")
