@@ -1,12 +1,12 @@
-def solution(target, nums = []):
-    for element in nums:
-        for checagem in nums:
-            valor_ate_target = element + checagem
-            if valor_ate_target == target and nums.index(element) != nums.index(checagem):
-                valor_index1 = nums.index(element)
-                valor_index2 = nums.index(checagem)
-                return print("O valor dessa soma se dá a "
-                             f"junção do INDEX: {valor_index1} e INDEX: {valor_index2}")
+# def solution(target, nums = []):
+#     for element in nums:
+#         for checagem in nums:
+#             valor_ate_target = element + checagem
+#             if valor_ate_target == target and nums.index(element) != nums.index(checagem):
+#                 valor_index1 = nums.index(element)
+#                 valor_index2 = nums.index(checagem)
+#                 return print("O valor dessa soma se dá a "
+#                              f"junção do INDEX: {valor_index1} e INDEX: {valor_index2}")
 
 # solution(9, [1, 6, 3])
 
@@ -14,26 +14,36 @@ def solution(target, nums = []):
 
 # solution(6, [3, 3])
 
-# utilizando sort e distribuição de ponteiros
 
-def TwoSum(target, lista = [], resposta = []):
+def TwoSum(target, lista = [], contador = 0, lista_antiga = []):
     lista_de_fato = list(lista)
+    lista_antigaParam = list(lista)
     lista_de_fato.sort()
-    print(lista_de_fato)
+    
     pointer2 = lista_de_fato[-1]
-    for element in lista_de_fato:
-        if element + pointer2 < target:
-            lista_de_fato.pop(lista_de_fato.index(element))
-            print("Sou lindo, funcionou")
-            return TwoSum(lista_de_fato, target)
+    pointer1 = lista_de_fato[contador]
+    # print(f"{pointer1} e {pointer2}")
 
-        elif element - pointer2 > target:
-            lista_de_fato.pop()
-            print("Sou lindo, funcionou")
-            return TwoSum(lista_de_fato, target)
-        
+    if pointer1 + pointer2 < target:
+        # print("saiu do primeiro")
+        contador += 1
+        return TwoSum(target, lista_de_fato, contador, lista_antigaParam)
+    elif pointer1 + pointer2 > target:
+        # print("removeu ultimo")
+        lista_de_fato.pop()
+        return TwoSum(target, lista_de_fato, contador, lista_antigaParam)
+    
+    else:
+        if pointer2 == pointer1:
+            pointer2 = len(lista_de_fato)-1
+            resposta = [lista_antigaParam.index(pointer1), pointer2]
         else:
-            resposta = [element, pointer2]
-            return print(resposta)
+            resposta = [lista_antigaParam.index(pointer1), lista_antigaParam.index(pointer2)]
+        return print(resposta)
+    
 
 TwoSum(9, [1, 6, 3])
+
+TwoSum(6, [3, 2, 4])
+
+TwoSum(6, [3, 3])
